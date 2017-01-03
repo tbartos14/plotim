@@ -47,29 +47,42 @@ class linearplot(object):
         self.xaxis.append(min(self.xpoints))
         self.xaxis.append(max(self.xpoints))
         print(self.yaxis, self.xaxis)
-        self.yrange = self.yaxis[1] - self.yaxis[0]
-        self.xrange = self.xaxis[1] - self.xaxis[0]
+        self.yrange = abs(self.yaxis[1] - self.yaxis[0])
+        self.xrange = abs(self.xaxis[1] - self.xaxis[0])
         self.yrangefactor = 0
         self.xrangefactor = 0
         #choosing what kind of scale to use
         #y range factorization
         while self.yrange*(10**self.yrangefactor) > 10 or self.yrange*(10**self.yrangefactor) < 1:
-            if self.yaxis[1] - self.yaxis[0] < 1:
+            if self.yrange*(10**self.yrangefactor) < 1:
                 self.yrangefactor = self.yrangefactor + 1
-            elif self.yaxis[1] - self.yaxis[0] > 10:
+            elif self.yrange*(10**self.yrangefactor) > 10:
                 self.yrangefactor = self.yrangefactor - 1
                 
         #x range factorization
         while self.xrange*(10**self.xrangefactor) > 10 or self.xrange*(10**self.xrangefactor) < 1:
-            if self.xaxis[1] - self.xaxis[0] < 1:
+            if self.xrange*(10**self.xrangefactor) < 1:
                 self.xrangefactor = self.xrangefactor + 1
-            elif self.xaxis[1] - self.xaxis[0] > 10:
+            elif self.xrange*(10**self.xrangefactor) > 10:
                 self.xrangefactor = self.xrangefactor - 1
                 
         #determining how many lines need to be placed
-        #determining y
-        self.yincrement = int(self.yrange*(10**self.yrangefactor)) + 2
-        self.xincrement = int(self.xrange*(10**self.xrangefactor)) + 2
+        #minimums/maximums for ease of reading
+        self.yrangemin = ((int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor)))
+        self.xrangemin = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor)))
+        #determining increments
+        self.tryyscale = (int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor))+((increment)*(10**(-1*self.yrangefactor)))
+        self.tryxscale = (int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor))+((increment)*(10**(-1*self.xrangefactor)))
+        #finding if scales are appropriate
+        self.additionalscaley = 0
+        self.addtiionalscalex = -0
+        while True:
+            if 
+        while True:
+            if
+        self.yincrement = int(self.yrange*(10**self.yrangefactor)) + self.additionalscaley
+        self.xincrement = int(self.xrange*(10**self.xrangefactor)) + self.additionalscalex
+        #now we determine y
         for increment in range(0, self.yincrement + 1):
             self.canvas.create_line(self.borderwest + 1, (self.windowy - self.bordersouth)-(increment/self.yincrement)*(self.windowy-self.bordernorth - self.bordersouth),\
                                     self.borderwest + self.graphx, (self.windowy - self.bordersouth)-(increment/self.yincrement)*(self.windowy - self.bordernorth - self.bordersouth), fill = "#bbbbbb", dash = (2,2))
@@ -81,11 +94,6 @@ class linearplot(object):
                                     self.bordersouth + (increment/self.xincrement)*(self.windowx - self.bordereast - self.borderwest), (self.windowy - self.bordersouth - self.graphy), fill = "#bbbbbb", dash = (2,2))
             self.canvas.create_text(self.borderwest  + (increment/self.xincrement)*(self.windowx - self.bordereast - self.borderwest), (self.windowy - self.bordersouth) + 12,\
                                     text = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor))+((increment)*(10**(-1*self.xrangefactor)))))
-        #defining minimums for ease of reading
-        self.yrangemin = ((int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor)))
-        self.xrangemin = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor)))
-        self.yrangemax = ((int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor))+((self.yincrement)*(10**(-1*self.yrangefactor))))
-        self.xrangemax = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor))+((self.xincrement)*(10**(-1*self.xrangefactor))))     
 
         #adding lines
         self.oldypoint = self.yrangemin
