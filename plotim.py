@@ -70,16 +70,26 @@ class linearplot(object):
         #minimums/maximums for ease of reading
         self.yrangemin = ((int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor)))
         self.xrangemin = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor)))
+        self.yrangemax = ((int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor))+((int(self.yrange*(10**self.yrangefactor)) + 1)*(10**(-1*self.yrangefactor))))
+        self.xrangemax = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor))+((int(self.xrange*(10**self.xrangefactor)) + 1)*(10**(-1*self.xrangefactor))))
         #determining increments
-        self.tryyscale = (int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor))+((increment)*(10**(-1*self.yrangefactor)))
-        self.tryxscale = (int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor))+((increment)*(10**(-1*self.xrangefactor)))
         #finding if scales are appropriate
         self.additionalscaley = 0
-        self.addtiionalscalex = -0
+        self.additionalscalex = 0
+        #seeing if data needs more space (y)
         while True:
-            if 
+            if max(self.ypoints) > self.yrangemax:
+                self.additionalscaley = self.additionalscaley + 1
+                self.yrangemax = ((int((min(self.ypoints))*(10**(self.yrangefactor))))/(10**(self.yrangefactor))+((int(self.yrange*(10**self.yrangefactor)) + 1 + self.additionalscaley)*(10**(-1*self.yrangefactor))))
+            else:
+                break
+        #(x)
         while True:
-            if
+            if max(self.xpoints) > self.xrangemax:
+                self.additionalscalex = self.additionalscalex + 1
+                self.xrangemax = ((int((min(self.xpoints))*(10**(self.xrangefactor))))/(10**(self.xrangefactor))+((int(self.xrange*(10**self.xrangefactor)) + 1 + self.additionalscalex)*(10**(-1*self.xrangefactor))))
+            else:
+                break
         self.yincrement = int(self.yrange*(10**self.yrangefactor)) + self.additionalscaley
         self.xincrement = int(self.xrange*(10**self.xrangefactor)) + self.additionalscalex
         #now we determine y
