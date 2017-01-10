@@ -7,7 +7,7 @@ of PEP 8.
 
 Here are the current classes available in plotim:
 
-linearplot() - Linear plotting tool
+linear_plot() - Linear plotting tool
 
 Here are the current functions available in plotim:
 
@@ -59,7 +59,7 @@ NOT REQUIRED:
 
 
 
-linearplot() Attributes:
+linear_plot() Attributes:
 windowx
 windowy
 bordernorth

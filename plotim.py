@@ -11,7 +11,7 @@ def vertical_text(text):
         newtext += character + "\n"
     return newtext
 
-class linearplot(object):
+class linear_plot(object):
     def __init__(self, windowx = 600, windowy = 400, bordernorth = 50, bordersouth = 50, bordereast = 30, borderwest = 50, title = "Linear Plot",\
                  sortpoints = True, draw_lines = True, draw_points = False, ytitle = "y", xtitle = "x", line_color = "#0000bb", image = None,\
                  line_of_best_fit = False):
@@ -38,16 +38,26 @@ class linearplot(object):
         self.image = image
         self.line_of_best_fit = line_of_best_fit
     def set_data(self, x, y):
-#        if self.sortpoints == True:
-#            self.temppoints = []
-#            for count in range(0, len(x)-1):
-#                self.temppoints.append(x[count])
-#                
-#        elif self.sortpoints == False:
-        for value in x:
-            self.xpoints.append(value)
-        for value in y:
-            self.ypoints.append(value)
+        if self.sortpoints == True:
+            temppointsx = []
+            temppointsy = []
+            for count in range(0, len(x)):
+                temppointsx.append(x[count])
+                temppointsy.append(y[count])
+            while len(temppointsx) > 0:
+                xvalue = min(temppointsx)
+                yindex = temppointsx.index(xvalue)
+                yvalue = temppointsy[yindex]
+                temppointsx.pop(yindex)
+                temppointsy.pop(yindex)
+                self.xpoints.append(xvalue)
+                self.ypoints.append(yvalue)
+        elif self.sortpoints == False:
+            for value in x:
+                self.xpoints.append(value)
+            for value in y:
+                self.ypoints.append(value)
+        print(self.xpoints,self.ypoints)
     def plot_data(self):
         self.master = tk.Tk()
         self.canvas = tk.Canvas(self.master, width = self.windowx, height = self.windowy)
