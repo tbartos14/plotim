@@ -1,6 +1,6 @@
 # # P L O T I M # #
 
-#version 0.5, 1/9/2017
+#version 0.5.1, 1/10/2017
 
 
 import tkinter as tk
