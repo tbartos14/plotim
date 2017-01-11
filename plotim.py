@@ -1,6 +1,6 @@
 # # P L O T I M # #
 
-#version 0.5.1, 1/10/2017
+#version 0.5.2, 1/11/2017
 
 
 import tkinter as tk
@@ -58,8 +58,11 @@ class linear_plot(object):
             for value in y:
                 self.ypoints.append(value)
         print(self.xpoints,self.ypoints)
-    def plot_data(self):
-        self.master = tk.Tk()
+    def plot_data(self, window = None):
+        if window != None:
+            self.master = window
+        else:
+            self.master = tk.Tk()
         self.canvas = tk.Canvas(self.master, width = self.windowx, height = self.windowy)
         self.canvas.create_text(self.borderwest + self.graphx/2,self.bordernorth/2, text = self.title)
         self.canvas.create_text(self.borderwest/3, self.bordernorth + self.graphy/2, text = self.yaxistitle)
@@ -199,4 +202,7 @@ class linear_plot(object):
         self.canvas.create_line(self.bordernorth, self.borderwest, self.bordernorth, (self.windowy - self.bordersouth))
         self.canvas.create_line(self.borderwest,(self.windowy - self.bordersouth),(self.windowx - self.bordereast), (self.windowy - self.bordersouth))
         self.canvas.pack()
-        tk.mainloop()
+        if window != None:
+            return self.canvas
+        else:
+            tk.mainloop()
