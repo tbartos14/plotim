@@ -21,7 +21,7 @@ Below is a list of methods and attributes callable:
 `linear_plot()` Methods:
 
 
-`__init__` : comes with the following parameters
+`__init__()` : comes with the following parameters
 
 **REQUIRED:**
 
