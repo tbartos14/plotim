@@ -206,3 +206,11 @@ class linear_plot(object):
             return self.canvas
         else:
             tk.mainloop()
+            
+if __name__ == "__main__":
+    plot1 = linear_plot()
+    x = [1,2,3,4,5,6,7,8,9]
+    y = [1,4,9,16,25,36,49,64,81]
+    plot1.set_data(x,y)
+    plot1.plot_data()
+        
