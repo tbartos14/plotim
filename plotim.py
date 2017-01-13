@@ -1,6 +1,6 @@
 # # P L O T I M # #
 
-#version 0.5.2, 1/11/2017
+#version 0.5.3, 1/13/2017
 
 
 import tkinter as tk
@@ -21,8 +21,6 @@ class linear_plot(object):
         self.bordersouth = bordersouth
         self.bordereast = bordereast
         self.borderwest = borderwest
-        self.xpoints = []
-        self.ypoints = []
         self.sortpoints = sortpoints
         self.originalyaxistitle = ytitle
         self.yaxistitle = vertical_text(ytitle)
@@ -32,12 +30,12 @@ class linear_plot(object):
         self.title = title
         self.draw_lines = draw_lines
         self.draw_points = draw_points
-        self.graphx = windowx - bordereast - borderwest
-        self.graphy = windowy - bordernorth - bordersouth
         self.linecolor = line_color
         self.image = image
         self.line_of_best_fit = line_of_best_fit
     def set_data(self, x, y):
+        self.xpoints = []
+        self.ypoints = []
         if self.sortpoints == True:
             temppointsx = []
             temppointsy = []
@@ -57,8 +55,10 @@ class linear_plot(object):
                 self.xpoints.append(value)
             for value in y:
                 self.ypoints.append(value)
-        print(self.xpoints,self.ypoints)
     def plot_data(self, window = None):
+        
+        self.graphx = self.windowx - self.bordereast - self.borderwest
+        self.graphy = self.windowy - self.bordernorth - self.bordersouth
         if window != None:
             self.master = window
         else:
@@ -165,7 +165,7 @@ class linear_plot(object):
         self.bestfitintercept = "{0:4.4}".format(self.bestfitintercept)
         self.bestfitequation = "Line of Best Fit Equation:\n" + str(self.originalyaxistitle) + " = " + str(self.bestfitslope) + " * " + str(self.xaxistitle) + " + " + str(self.bestfitintercept)
         if self.line_of_best_fit == True:
-            if self.ypoints[len(self.xpoints)-1] < (self.yrangemax - self.yrangemin):
+            if self.ypoints[len(self.xpoints)-1] < (self.yrangemax):
                 self.canvas.create_text((self.windowx - self.bordereast - self.graphx/5), (self.bordernorth + self.graphy/5), text = self.bestfitequation)
             else:
                 self.canvas.create_text((self.windowx - self.bordereast - self.graphx/5), (self.bordernorth + 4*self.graphy/5), text = self.bestfitequation)
