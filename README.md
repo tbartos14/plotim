@@ -21,7 +21,7 @@ Below is a list of methods and attributes callable:
 `linear_plot()` Methods:
 
 
-`__init__()` : comes with the following parameters
+`__init__` : comes with the following parameters
 
 **REQUIRED:**
 
@@ -54,10 +54,11 @@ y: array of y points
 
 **REQUIRED:**
 
-**NOT REQUIRED:**
+**NOT REQUIRED:**  
 
+`tk` : tkinter window
 
-`linear_plot()` Attributes:
+`linear_plot()` Attributes:  
 `windowx`  
 `windowy`  
 `bordernorth`  
