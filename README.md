@@ -1,6 +1,10 @@
 PLOTIM
 ======
 
+*This module I wrote in high school is pretty old now (2016 is when I started it!). In efforts to keep it around, I've kept everything intact to see how far I've come. However, if you're looking for something interesting, I'd recommend looking at something newer.*
+
+
+
 This work-in-progress module currently includes tools for objects for creating graphs using the Tkinter canvas.
 I plan to add classes for bar graphs, box-and-whisker plots, pie charts, and all sorts of other stuff.
 This is my first project, and such the code may be poorly written/hard to read. Please excuse all violations
